@@ -1,24 +1,43 @@
 package DynamicProgramming;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 
 public class WeightedJobScheduling {
     public static void main(String[] args) {
 
-
-        int[][] jobs = {
-                {4,6,5},
-                {6,7,4},
-                {1,3,5},
-                {2,5,6},
-                {7,9,4},
-                {5,8,11}
-        };
         //System.out.println(weightedJobScheduling(jobs));
+
+        Scanner sc = new Scanner(System.in);
+
+        int n = sc.nextInt();
+        Node dm = new Node();
+        Node prev = dm;
+
+        for(int i=0; i<n; i++){
+            int num = sc.nextInt();
+            prev = push(prev, num);
+        }
+
+        Node curr = dm.next;
+        while(curr  != null){
+            System.out.print(curr.val+" ");
+            curr = curr.next;
+        }
     }
+
+    public static Node push(Node prev, int val){
+        Node node = new Node();
+        node.val = val;
+        prev.next = node;
+        return node;
+    }
+
+    static class Node{
+        int val ;
+        Node next;
+    }
+
+
     public static int weightedJobScheduling(int[][] jobs){
         int n = jobs.length;
         Arrays.sort(jobs, (o1, o2)->{return o1[1]-o2[1];});
@@ -34,5 +53,6 @@ public class WeightedJobScheduling {
         }
         return maxProfit;
     }
+
 
 }
