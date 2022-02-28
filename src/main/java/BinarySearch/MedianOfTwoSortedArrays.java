@@ -3,6 +3,7 @@ package BinarySearch;
 public class MedianOfTwoSortedArrays {
     public static void main(String[] args) {
 
+
     }
 
     public static double medianOfTwoSortedArrays(int[] arr1, int[] arr2){
